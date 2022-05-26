@@ -13,7 +13,20 @@
       </div>
     </div>
     <div class="page-content">
+      <div id="liste">
+
+      </div>
+   <script>  
+      const el = document.getElementById('liste');
+      const text = "";
+      
+      el.append();
+
    
+
+
+      
+    </script>
       
 
     <p><a href="#" data-popup=".my-popup" class="popup-open button button-round">Open Popup</a></p>
@@ -32,7 +45,7 @@
         </div>
       </div>
       <div class="page-content">
-        ...
+
       </div>
     </div>
   </div>
@@ -46,7 +59,26 @@
 </template>
 
 <script>
+   import Framework7 from 'framework7';
+
+
+  
 export default () => {
+  Framework7.request.get('http://localhost:8081/API/allListe.php').then((res) => {
+  el.append(res.data);
+  var JsonString = JSON.parse((res.data));
+  
+
+  for (var i = 0; i < JsonString.length; i++){
+  var obj = JsonString[i];
+  for (var key in obj){
+    var value = obj[key];
+    console.log("<br> - " + key + ": " + value);
+  }
+}
+  
+}); 
+  
   return $render;
 }
 
